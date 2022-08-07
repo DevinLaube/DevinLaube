@@ -1,0 +1,732 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #282727;
+}
+
+/* ================================================================================================ */
+/* LAYOUT */
+/* ================================================================================================ */
+
+#wcp-editor {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+#wcp-editor-center-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#wcp-editor-center {
+    position: relative;
+    z-index: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 66px;
+}
+#wcp-editor-right {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+#wcp-editor-canvas {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    /* transition: all 0.25s cubic-bezier(.55,0,.1,1);
+    -moz-transition: all 0.25s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: all 0.25s cubic-bezier(.55,0,.1,1); */
+}
+#wcp-editor-canvas.wcp-editor-canvas-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* MAIN BUTTONS */
+
+#wcp-editor-main-buttons {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+#wcp-editor-main-buttons .wcp-editor-main-button {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 50px;
+    padding: 0 5px;
+    height: 60px;
+    overflow: hidden;
+}
+
+/* TOOLBAR */
+
+#wcp-editor-toolbar-wrap {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -205px;
+    z-index: 2;
+}
+#wcp-editor-toolbar-wrap .wcp-editor-toolbar {
+    margin: 2px 0;
+    border-radius: 3px;
+}
+#wcp-editor-toolbar-wrap .wcp-editor-toolbar .wcp-editor-toolbar-button {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+}
+
+/* OBJECT SETTINGS */
+
+#wcp-editor-right #wcp-editor-object-settings {
+    overflow-y: auto;
+    flex: 2;
+}
+#wcp-editor-right #wcp-editor-object-settings .wcp-editor-object-settings-group .wcp-editor-object-settings-group-header {
+    line-height: 40px;
+    padding-left: 10px;
+    display: flex;
+}
+#wcp-editor-right #wcp-editor-object-settings .wcp-editor-object-settings-group .wcp-editor-object-settings-group-header .wcp-editor-object-settings-group-header-icon {
+    margin-right: 10px;
+}
+#wcp-editor-right #wcp-editor-object-settings .wcp-editor-object-settings-group .wcp-editor-object-settings-group-header .wcp-editor-object-settings-group-header-icon .fa-minus {
+    display: none;
+}
+#wcp-editor-right #wcp-editor-object-settings .wcp-editor-object-settings-group .wcp-editor-object-settings-content {
+    padding: 10px;
+}
+
+/* OBJECT LIST */
+
+#wcp-editor-right #wcp-editor-object-list-wrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-height: 50%;
+}
+#wcp-editor-right #wcp-editor-object-list-wrap #wcp-editor-object-list-buttons {
+    display: flex;
+    height: 30px;
+    flex-shrink: 0;
+}
+#wcp-editor-right #wcp-editor-object-list-wrap #wcp-editor-object-list-buttons .wcp-editor-object-list-button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+#wcp-editor-right #wcp-editor-object-list-wrap #wcp-editor-object-list {
+    overflow-y: auto;
+}
+#wcp-editor-right #wcp-editor-object-list-wrap #wcp-editor-object-list .wcp-editor-object-list-item {
+    line-height: 40px;
+    padding: 0 10px;
+}
+
+/* ================================================================================================ */
+/* TYPOGRAPHY */
+/* ================================================================================================ */
+
+#wcp-editor {
+    font-family: 'Source Sans Pro', 'sans-serif';
+    font-size: 14px;
+}
+
+/* ========================================================================== */
+/* MODAL */
+/* ========================================================================== */
+
+#wcp-editor-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: 159999;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Source Sans Pro', sans-serif;
+    opacity: 0;
+    transition: opacity 0.33s cubic-bezier(.55,0,.1,1);
+    -moz-transition: opacity 0.33s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: opacity 0.33s cubic-bezier(.55,0,.1,1);
+}
+#wcp-editor-modal.wcp-editor-modal-visible {
+    opacity: 1;
+}
+#wcp-editor-modal .wcp-editor-modal-body {
+    margin: 40px;
+    border-radius: 3px;
+    min-width: 320px;
+    max-width: 80%;
+    position: relative;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.33s cubic-bezier(.55,0,.1,1);
+    -moz-transition: all 0.33s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: all 0.33s cubic-bezier(.55,0,.1,1);
+}
+#wcp-editor-modal.wcp-editor-modal-visible .wcp-editor-modal-body {
+    transform: scale(1);
+    opacity: 1;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 22px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 64px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-header {
+    font-size: 18px;
+    padding: 0 20px;
+    line-height: 64px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-content {
+    padding: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    margin: 0 20px 20px 20px;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-footer {
+    padding: 0 20px 20px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+.wcp-editor-modal-button {
+    font-size: 14px;
+    line-height: 32px;
+    padding: 0 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 8px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Load modal */
+.wcp-editor-save-list-item-wrap {
+    display: flex;
+    width: 320px;
+    /* margin-bottom: 1px; */
+}
+.wcp-editor-save-list-item-wrap:last-child {
+    margin-bottom: 0;
+}
+.wcp-editor-save-list-item-wrap .wcp-editor-save-list-item {
+    flex: 1;
+    line-height: 40px;
+    font-size: 14px;
+    border-right: none;
+    /* border-radius: 3px 0 0 3px; */
+    padding: 0 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.wcp-editor-save-list-item-wrap .wcp-editor-save-list-item-delete-button {
+    width: 40px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    /* border-radius: 0 3px 3px 0; */
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.wcp-editor-save-list-item-wrap .wcp-editor-save-list-item-delete-button:active {
+    filter: brightness(0.9);
+    -moz-filter: brightness(0.9);
+    -webkit-filter: brightness(0.9);
+}
+
+/* ================================================================================================ */
+/* MISC */
+/* ================================================================================================ */
+
+#wcp-editor-toolbar-wrap, #wcp-editor-main-buttons, #wcp-editor-object-list-wrap, .wcp-editor-object-settings-group-header {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.wcp-editor-main-button, .wcp-editor-toolbar-button, .wcp-editor-object-list-button, .wcp-editor-object-list-item, .wcp-editor-object-settings-group-header {
+    cursor: pointer;
+}
+#wcp-editor-main-buttons, .wcp-editor-toolbar {
+    overflow: hidden;
+}
+
+/* Dragging list items */
+
+.wcp-editor-object-dragged-list-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.8;
+    z-index: 2147483647;
+    width: 250px;
+    padding: 0 10px;
+    line-height: 40px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.wcp-editor-object-dragged-list-item-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ========================================================================== */
+/* FLOATING WINDOW */
+/* ========================================================================== */
+
+#wcp-editor-floating-window {
+    /* necessary because of fullscreen mode in WP */
+    z-index: 100000;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 3px;
+}
+.wcp-editor-floating-window-header {
+    padding: 20px;
+    font-weight: 700;
+    line-height: 50px;
+    padding: 0 50px 0 20px;
+    border-radius: 3px 3px 0 0;
+    cursor: move;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.wcp-editor-floating-window-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 52px;
+    text-align: center;
+    cursor: pointer;
+}
+.wcp-editor-floating-window-body {
+    padding: 0;
+    overflow: auto;
+}
+.wcp-editor-floating-window-body.with-padding {
+    padding: 10px;
+}
+
+/* ========================================================================== */
+/* LOADING SCREEN */
+/* ========================================================================== */
+
+#wcp-editor-loading-screen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2147483647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Source Sans Pro', sans-serif;
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(.55,0,.1,1);
+    -moz-transition: opacity 0.25s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: opacity 0.25s cubic-bezier(.55,0,.1,1);
+}
+#wcp-editor-loading-screen.wcp-editor-loading-screen-visible {
+    opacity: 1;
+}
+#wcp-editor-loading-screen-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+}
+#wcp-editor-loading-screen-text {
+    font-size: 24px;
+    line-height: 36px;
+    margin-top: 20px;
+    text-align: center;
+}
+#button-loading-screen-close {
+    font-size: 16px;
+    margin: 20px auto;
+    width: 100px;
+}
+.loading-screen-subtitle {
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ========================================================================== */
+/* SETTINGS WINDOW */
+/* ========================================================================== */
+
+#wcp-editor-settings-window-dummy {
+    left: 0;
+    top: 0;
+    padding: 0px;
+    width: 0;
+    transition: width 0.25s cubic-bezier(.55,0,.1,1);
+    -moz-transition: width 0.25s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: width 0.25s cubic-bezier(.55,0,.1,1);
+}
+#wcp-editor-settings-window {
+    position: absolute;
+    width: 350px;
+    height: 100%;
+    overflow-y: auto;
+    left: -350px;
+    top: 0;
+    transition: transform 0.25s cubic-bezier(.55,0,.1,1);
+    -moz-transition: transform 0.25s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: transform 0.25s cubic-bezier(.55,0,.1,1);
+}
+.wcp-settings-window-visible #wcp-editor-settings-window {
+    transform: translateX(350px);
+}
+#wcp-editor-settings-window-title {
+    font-size: 20px;
+    line-height: 60px;
+    padding-left: 10px;
+    display: inline-block;
+    font-weight: 700;
+}
+#wcp-editor-settings-window-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ========================================================================== */
+/* TOOLTIP */
+/* ========================================================================== */
+
+#wcp-editor-tooltip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2147483647;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0 12px;
+    border-radius: 3px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-visible {
+    opacity: 1;
+}
+#wcp-editor-tooltip:before {
+    position: absolute;
+    display: block;
+    content: '';
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-left:before {
+    right: -6px;
+    top: 50%;
+    margin-top: -6px;
+
+    width: 0;
+    height: 0;
+
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-right:before {
+    left: -6px;
+    top: 50%;
+    margin-top: -6px;
+
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-top:before {
+    left: 50%;
+    margin-left: -6px;
+    bottom: -6px;
+
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-bottom:before {
+    left: 50%;
+    margin-left: -6px;
+    top: -6px;
+
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+
+/* ================================================================================================ */
+/* COLORS */
+/* ================================================================================================ */
+
+html, body {
+    background: #282727;
+}
+#wcp-editor {
+    background: #F1F1F1;
+    color: #333;
+}
+#wcp-editor-canvas {
+    background: white;
+}
+#wcp-editor-main-buttons {
+    background: #0258D0;
+    color: white;
+}
+#wcp-editor-main-buttons .wcp-editor-main-button:hover {
+    background: #004EBA;
+}
+#wcp-editor-main-buttons .wcp-editor-main-button:active {
+    background: #00429E;
+}
+#wcp-editor-main-buttons .wcp-editor-main-button.wcp-active {
+    background: #e03c1c;
+}
+.wcp-editor-toolbar {
+    background: white;
+    border: 1px solid #D7D7D7;
+}
+.wcp-editor-toolbar-button:hover {
+    background: #F1F1F1;
+}
+.wcp-editor-toolbar-button:active {
+    background: #E4E4E4;
+}
+.wcp-editor-object-list-button:hover {
+    background: #DFDFDF;
+}
+.wcp-editor-object-list-button:active {
+    background: #D0D0D0;
+}
+.wcp-editor-toolbar-button.wcp-active {
+    background: #0258D0;
+    color: white;
+}
+.wcp-editor-toolbar-button.wcp-active .wcp-editor-toolbar-button-icon div {
+    border-color: #333 !important;
+}
+.wcp-editor-toolbar-button.wcp-active .wcp-editor-toolbar-button-icon div {
+    border-color: white !important;
+}
+.wcp-editor-toolbar-button.wcp-active .wcp-editor-toolbar-button-icon svg * {
+    fill: white !important;
+    stroke: white !important;
+}
+.wcp-editor-toolbar-button.wcp-active .wcp-editor-toolbar-button-icon svg .nofill {
+    fill: none !important;
+}
+#wcp-editor-object-settings {
+    background: white;
+    border-left: 1px solid #D7D7D7;
+    border-bottom: 1px solid #D7D7D7;
+}
+.wcp-editor-object-settings-group-header {
+    background: white;
+}
+#wcp-editor-object-list-wrap {
+    background: white;
+    border-left: 1px solid #D7D7D7;
+}
+#wcp-editor-object-list-buttons {
+    background: #F1F1F1;
+}
+.wcp-editor-object-list-item {
+    background: #F1F1F1;
+}
+.wcp-editor-object-list-item:hover {
+    background: #DFDFDF;
+}
+.wcp-editor-object-list-item:active {
+    background: #D0D0D0;
+}
+.wcp-editor-object-list-item.wcp-active {
+    background: #0258D0;
+    color: white;
+}
+#wcp-editor-floating-window {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.12);
+}
+.wcp-editor-floating-window-header {
+    background: #0258D0;
+    color: white;
+}
+#wcp-editor-modal {
+    color: #333;
+}
+#wcp-editor-modal .wcp-editor-modal-body {
+    background: white;
+}
+#wcp-editor-modal {
+    background: rgba(0, 0, 0, 0.6);
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-close {
+    color: white;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-close:hover {
+    background: #888787;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-close:active {
+    background: #9F9E9E;
+}
+#wcp-editor-modal .wcp-editor-modal-body .wcp-editor-modal-content {
+    border-bottom: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+}
+.wcp-editor-modal-button {
+    background: #f1f1f1;
+}
+.wcp-editor-modal-button:hover {
+    background: #dfdfdf;
+}
+.wcp-editor-modal-button:active {
+    background: #d0d0d0;
+}
+.wcp-editor-modal-button.wcp-editor-modal-button-primary {
+    background: #0258D0;
+    color: white;
+}
+.wcp-editor-modal-button.wcp-editor-modal-button-primary:hover {
+    background: #004EBA;
+}
+.wcp-editor-modal-button.wcp-editor-modal-button-primary:active {
+    background: #00429E;
+}
+.wcp-editor-modal-button.wcp-editor-modal-button-danger {
+    background: #e03c1c;
+    color: white;
+}
+.wcp-editor-save-list-item-wrap .wcp-editor-save-list-item {
+    background: #f1f1f1;
+}
+.wcp-editor-save-list-item:hover {
+    background: #dfdfdf;
+}
+.wcp-editor-save-list-item:active {
+    background: #d0d0d0;
+}
+.wcp-editor-save-list-item-wrap .wcp-editor-save-list-item-delete-button {
+    background: #f1f1f1;
+}
+.wcp-editor-save-list-item-wrap .wcp-editor-save-list-item-delete-button:hover {
+    background: #e03c1c;
+    color: white;
+}
+.wcp-editor-object-dragged-list-item {
+    background: #5C5B5B;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+#wcp-editor-loading-screen {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+#wcp-editor-settings-window {
+    background: white;
+    border-right: 1px solid #D7D7D7;
+}
+#wcp-editor-tooltip {
+    background: #222;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+#wcp-editor-tooltip:before {
+    border-color: #222;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-left:before {
+    border-left: 6px solid #222;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-right:before {
+    border-right:6px solid #222;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-top:before {
+    border-top: 6px solid #222;
+}
+#wcp-editor-tooltip.wcp-editor-tooltip-bottom:before {
+    border-bottom: 6px solid #222;
+}

@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+
+/* ================================================================================================ */
+/* LAYOUT */
+/* ================================================================================================ */
+
+.wcp-form-clear {
+    clear: both;
+}
+.wcp-form-tab-button {
+    cursor: pointer;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.wcp-form-tab-button i {
+    margin-right: 5px;
+}
+
+.wcp-form-tab-button i.fa-minus {
+    display: inline-block;
+}
+
+.wcp-form-tab-button i.fa-plus {
+    display: none;
+}
+
+.wcp-form-tab-content {
+    padding: 10px 10px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wcp-form-tab.wcp-form-tab-closed .wcp-form-tab-button i.fa-plus {
+    display: inline-block;
+}
+.wcp-form-tab.wcp-form-tab-closed .wcp-form-tab-button i.fa-minus {
+    display: none;
+}
+.wcp-form-tab.wcp-form-tab-closed .wcp-form-tab-content {
+    display: none;
+}
+
+/* ================================================================================================ */
+/* COLORS */
+/* ================================================================================================ */
+
+.wcp-form-tab-button {
+    background: #F1F1F1;
+}
+.wcp-form-tab-button:hover {
+    background: #E4E4E4;
+}
+.wcp-form-tab-button:active {
+    background: #D0D0D0;
+}

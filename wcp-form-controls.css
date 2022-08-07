@@ -1,0 +1,529 @@
+/*
+Webcraft Plugins Ltd.
+Author: Nikolay Dyankov
+*/
+
+/* ================================================================================================ */
+/* COMMON */
+/* ================================================================================================ */
+
+.wcp-form-controls-clear {
+    clear: both;
+}
+.wcp-form-form-control {
+    font-size: 12px;
+    display: flex;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.wcp-form-form-control label {
+    display: inline-block;
+    line-height: 24px;
+    text-align: right;
+    margin-right: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* white-space: nowrap; */
+}
+.wcp-form-form-control input, .wcp-form-form-control textarea, .wcp-form-form-control select {
+    font-size: 12px;
+    width: 100%;
+    flex: 1;
+    height: 24px;
+    margin: 0;
+    padding: 0 7px;
+    line-height: 24px;
+    font-weight: 400;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.wcp-form-form-control textarea {
+    height: 96px;
+    line-height: 16px;
+    padding: 10px;
+}
+.wcp-form-form-control input[type="color"] {
+    padding: 0;
+}
+.wcp-form-control-span-1 {
+    width: 100%;
+}
+.wcp-form-control-span-2 {
+    width: 50%;
+}
+.wcp-form-control-span-3 {
+    width: 33.33%;
+}
+.wcp-form-control-span-4 {
+    width: 25%;
+}
+.wcp-form-form-control.wcp-error input {
+    background: #ffeaea;
+    border: 1px solid #ffbaba;
+    color: #b70d0d;
+}
+.wcp-form-form-control.wcp-error input:focus {
+    border-color: #d60202;
+}
+.wcp-form-form-control.wcp-error label {
+    color: #b70d0d;
+}
+
+/* LAYERS SELECT */
+
+/* ================================================================================================ */
+/* BOX MODEL */
+/* ================================================================================================ */
+
+.wcp-form-boxmodel-margin {
+    height: 250px;
+    width: 250px;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 52px;
+}
+.wcp-form-boxmodel-padding {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.wcp-form-boxmodel-margin input, .wcp-form-boxmodel-padding input {
+    width: 32px;
+    position: absolute;
+    font-size: 12px;
+    padding: 0 5px;
+    text-align: center;
+}
+#wcp-form-element-option-boxmodel-margin-top, #wcp-form-element-option-boxmodel-padding-top {
+    top: 10px;
+    left: 50%;
+    margin-left: -16px;
+}
+#wcp-form-element-option-boxmodel-margin-bottom, #wcp-form-element-option-boxmodel-padding-bottom {
+    bottom: 10px;
+    left: 50%;
+    margin-left: -16px;
+}
+#wcp-form-element-option-boxmodel-margin-left, #wcp-form-element-option-boxmodel-padding-left {
+    top: 50%;
+    left: 10px;
+    margin-top: -16px;
+}
+#wcp-form-element-option-boxmodel-margin-right, #wcp-form-element-option-boxmodel-padding-right {
+    top: 50%;
+    right: 10px;
+    margin-top: -16px;
+}
+#wcp-form-boxmodel-label-margin, #wcp-form-boxmodel-label-padding {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 12px;
+}
+
+/* ================================================================================================ */
+/* SLIDER */
+/* ================================================================================================ */
+
+.wcp-form-control-slider {
+    height: 24px;
+    position: relative;
+    flex: 1;
+}
+.wcp-form-control-slider-track {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    left: 0;
+    top: 50%;
+    margin-top: -5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.wcp-form-control-slider-ball {
+    width: 1px;
+    height: 24px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.wcp-form-control-slider-ball:before {
+    display: block;
+    content: '';
+    width: 7px;
+    height: 20px;
+    margin-left: -3px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 20px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.wcp-form-control-slider-bubble {
+    position: absolute;
+    left: 0;
+    top: -20px;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 0 10px;
+    line-height: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* ================================================================================================ */
+/* GRID SYSTEM */
+/* ================================================================================================ */
+
+.wcp-form-grid-system-control-res-group {
+    display: flex;
+    margin-bottom: 10px;
+}
+.wcp-form-grid-system-control-res-name, .wcp-form-grid-system-control-res-use, .wcp-form-grid-system-control-colspan, .wcp-form-grid-system-control-visible {
+    float: left;
+}
+.wcp-form-grid-system-control-res-name, .wcp-form-grid-system-control-res-use, .wcp-form-grid-system-control-visible {
+    width: 32px;
+}
+.wcp-form-grid-system-control-res-name, .wcp-form-grid-system-control-visible {
+    line-height: 32px;
+    text-align: center;
+}
+.wcp-form-grid-system-control-visible {
+    cursor: pointer;
+}
+.wcp-form-grid-system-control-visible.wcp-form-control-disabled {
+    cursor: auto;
+    opacity: 0.5;
+}
+.wcp-form-grid-system-control-visible .fa-eye-slash {
+    display: none;
+}
+.wcp-form-grid-system-control-visible-not .fa-eye-slash {
+    display: inline;
+}
+.wcp-form-grid-system-control-visible-not .fa-eye {
+    display: none;
+}
+.wcp-form-grid-system-control-colspan {
+    flex: 1;
+}
+
+/* ================================================================================================ */
+/* SWITCH */
+/* ================================================================================================ */
+
+.wcp-form-control-switch {
+    width: 39px;
+    height: 24px;
+    margin-right: auto;
+    border-radius: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s cubic-bezier(.55,0,.1,1);
+    -moz-transition: background 0.2s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: background 0.2s cubic-bezier(.55,0,.1,1);
+}
+.wcp-form-control-switch-ball {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    transition: left 0.2s cubic-bezier(.55,0,.1,1);
+    -moz-transition: left 0.2s cubic-bezier(.55,0,.1,1);
+    -webkit-transition: left 0.2s cubic-bezier(.55,0,.1,1);
+}
+.wcp-form-control-switch.active .wcp-form-control-switch-ball {
+    left: 17px;
+    top: 2px;
+}
+.wcp-form-control-switch-label {
+    flex: 1;
+    text-align: right;
+    cursor: pointer;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 8px;
+}
+
+/* ================================================================================================ */
+/* BUTTON GROUP */
+/* ================================================================================================ */
+
+.wcp-form-control-button-group {
+    display: flex;
+    flex: 1;
+}
+.wcp-form-control-button-group-button {
+    flex: 1;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.wcp-form-control-button-group-button:first-child {
+    border-radius: 3px 0 0 3px;
+}
+.wcp-form-control-button-group-button:last-child {
+    border-radius: 0 3px 3px 0;
+}
+.wcp-form-control-button-group-button.no-border-right {
+    border-right: none;
+}
+.wcp-form-control-button-group-layers-list {
+    margin-top: 10px;
+}
+.wcp-form-control-button-group-layers-list .wcp-form-control-button-group-button {
+    white-space: nowrap;
+    padding: 0 10px;
+}
+
+/* ================================================================================================ */
+/* BUTTON */
+/* ================================================================================================ */
+
+.wcp-form-control-button {
+    flex: 1;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* ================================================================================================ */
+/* WP MEDIA UPLOAD */
+/* ================================================================================================ */
+
+.wcp-form-input-with-button {
+    display: flex;
+    flex: 1;
+}
+.wcp-form-input-with-button .wcp-form-control-button {
+    margin-left: 10px;
+}
+
+/* ================================================================================================ */
+/* FULLSCREEN BUTTON POSITION */
+/* ================================================================================================ */
+
+.wcp-form-control-fullscreen-button-position {
+    height: 200px;
+    position: relative;
+    flex: 1;
+}
+.wcp-form-control-fullscreen-button-position-location {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+}
+.wcp-form-control-fullscreen-button-position-location-0 {
+    left: 0;
+    top: 0;
+    margin: -1px 0 0 -1px;
+}
+.wcp-form-control-fullscreen-button-position-location-1 {
+    left: 50%;
+    top: 0;
+    margin: -1px 0 0 -22px;
+}
+.wcp-form-control-fullscreen-button-position-location-2 {
+    right: 0;
+    top: 0;
+    margin: -1px -1px 0 0;
+}
+.wcp-form-control-fullscreen-button-position-location-3 {
+    right: 0;
+    bottom: 0;
+    margin: 0 -1px -1px 0;
+}
+.wcp-form-control-fullscreen-button-position-location-4 {
+    left: 50%;
+    bottom: 0;
+    margin: 0 0 -1px -22px;
+}
+.wcp-form-control-fullscreen-button-position-location-5 {
+    left: 0;
+    bottom: 0;
+    margin: 0 0 -1px -1px;
+}
+.wcp-form-control-fullscreen-button-position-selected {
+    border-style: solid;
+}
+
+/* ================================================================================================ */
+/* LAYERS SELECT */
+/* ================================================================================================ */
+
+.wcp-form-control-layers-list {
+    flex: 1;
+}
+.wcp-form-control-layers-list-select {
+    height: auto !important;
+    padding: 5px !important;
+}
+
+/* ================================================================================================ */
+/* INFO */
+/* ================================================================================================ */
+
+.wcp-form-control-info {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    color: #222;
+}
+.wcp-form-control-info i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+.wcp-form-control-info-red {
+    color: white;
+    background: #f73f3f;
+}
+.wcp-form-control-info-green {
+    background: #4ff73f;
+}
+.wcp-form-control-info-blue {
+    background: #dfecff;
+}
+.wcp-form-control-info-yellow {
+    background: #f7cb3f;
+}
+
+/* ================================================================================================ */
+/* COLORS */
+/* ================================================================================================ */
+
+.wcp-form-form-control input, .wcp-form-form-control textarea, .wcp-form-form-control select {
+    background: white;
+    border: 1px solid #dfdfdf;
+    color: #333;
+    box-shadow: none !important;
+}
+.wcp-form-form-control input[type="color"] {
+    background: white;
+}
+.wcp-form-form-control input:focus, .wcp-form-form-control textarea:focus, .wcp-form-form-control select:focus {
+    border-color: #949494;
+}
+.wcp-form-boxmodel-margin {
+    background: #f9cc9d;
+}
+.wcp-form-boxmodel-padding {
+    border: 1px dashed #808080;
+    background: #c2cf8a;
+}
+.wcp-form-boxmodel-margin input, .wcp-form-boxmodel-padding input {
+    border-color: #808080;
+}
+.wcp-form-boxmodel-margin input:focus, .wcp-form-boxmodel-padding input:focus {
+    border-color: #303942;
+}
+#wcp-form-boxmodel-label-margin, #wcp-form-boxmodel-label-padding {
+    color: #303942;
+}
+.wcp-form-control-slider-track {
+    background: #f1f1f1;
+}
+.wcp-form-control-slider-ball:before {
+    background: #0258D0;
+}
+.wcp-form-control-slider-bubble {
+    background: #333;
+    color: white;
+}
+.wcp-form-control-switch {
+    background: #DFDFDF;
+}
+.wcp-form-control-switch-ball {
+    background: white;
+}
+.wcp-form-control-switch.active {
+    background: #0258D0;
+}
+.wcp-form-control-button-group-button {
+    border-top: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+    border-right: 1px solid #DFDFDF;
+}
+.wcp-form-control-button-group-button:hover {
+    background: #F1F1F1;
+}
+.wcp-form-control-button-group-button:active {
+    background: #DFDFDF;
+}
+.wcp-form-control-button-group-button:first-child {
+    border-left: 1px solid #DFDFDF;
+}
+.wcp-form-control-button-group-button:last-child {
+    border-right: 1px solid #DFDFDF;
+}
+.wcp-form-control-button-group-button.active {
+    background: #0258D0;
+    color: white;
+    border-color: #0258D0;
+}
+.wcp-form-control-button {
+    background: white;
+    border: 1px solid #dfdfdf;
+    color: #333;
+}
+.wcp-form-control-button:hover {
+    background: #f1f1f1;
+}
+.wcp-form-control-button:active {
+    background: #dfdfdf;
+}
+.wcp-form-control-fullscreen-button-position {
+    border: 1px solid #222;
+    background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 10px,
+        #f5f5f5 10px,
+        #f5f5f5 20px
+    );
+}
+.wcp-form-control-fullscreen-button-position-location {
+    background: white;
+    border: 1px dashed #222;
+}
+.wcp-form-control-fullscreen-button-position-selected {
+    background: #0258D0;
+}
